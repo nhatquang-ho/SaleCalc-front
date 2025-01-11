@@ -1,12 +1,9 @@
-import './App.css';
-import Button from '@mui/material/Button';
+import MyButton from './components/Button/MyButton';
 
 function App() {
   return (
-    <div className="SaleCalcApp">
-      <Button variant="contained" color="primary">SaleCalc APP</Button>
-    </div>
-  );
+    <MyButton />
+  )
 }
 
 export default App;
