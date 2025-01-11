@@ -1,8 +1,10 @@
 {
+  "homepage": "https://nhatquang-ho.github.io/SaleCalc/",
   "name": "salecalc",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.1.1",
