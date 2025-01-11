@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.31d6cfe0.css",
-    "main.js": "/static/js/main.81d3fad4.js",
-    "index.html": "/index.html",
-    "main.81d3fad4.js.map": "/static/js/main.81d3fad4.js.map"
+    "main.css": "/SaleCalc/static/css/main.31d6cfe0.css",
+    "main.js": "/SaleCalc/static/js/main.81d3fad4.js",
+    "index.html": "/SaleCalc/index.html",
+    "main.81d3fad4.js.map": "/SaleCalc/static/js/main.81d3fad4.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
