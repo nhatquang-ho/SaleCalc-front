@@ -1,8 +1,8 @@
-import MyButton from './components/Button/MyButton';
+import MainPage from "./components/MainPage/MainPage";
 
 function App() {
   return (
-    <MyButton />
+    <MainPage />
   )
 }
 
