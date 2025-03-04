@@ -29,6 +29,9 @@ jobs:
     - name: Build the project
       run: npm run build:prod
 
+    - name: Verify build directory
+      run: ls -la build
+
     - name: Deploy via SSH
       uses: appleboy/ssh-action@master
       with:
