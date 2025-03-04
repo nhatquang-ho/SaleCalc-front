@@ -42,6 +42,7 @@ jobs:
           chmod -R 755 /var/www/salecalc/
           # If needed, restart your web server
           # sudo systemctl restart nginx
+        timeout: '120s'
 
     - name: Clean up workflow artifacts
       uses: geekyeggo/delete-artifact@v1
