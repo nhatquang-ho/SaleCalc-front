@@ -15,16 +15,25 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { CustomAppBar, DrawerHeader, drawerWidth } from './NavBar.styles';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import SettingsIcon from '@mui/icons-material/Settings';
+import keycloak from '../../auth/keycloak';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUserInfo } from '../../store/userSlice';
+import { useEffect, useState } from 'react';
 
 function NavBar({ currentPage, setCurrentPage }) {
-
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const userInfo = useSelector((state) => state.user.userInfo);
+    const dispatch = useDispatch();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -34,7 +43,30 @@ function NavBar({ currentPage, setCurrentPage }) {
         setOpen(false);
     };
 
+    const handleMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        keycloak.logout().then(() => {
+        });
+        dispatch(clearUserInfo());
+    };
+
     const menuItems = ['Boutique', 'Transaction', 'Statistiques', 'Paramètres'];
+
+    const getInitials = (name) => {
+        if (!name) return '';
+        const nameParts = name.split(' ');
+        const initials = nameParts.map(part => part[0]).join('');
+        return initials.toUpperCase();
+    };
+
+    const userInitials = userInfo ? getInitials(`${userInfo.firstName} ${userInfo.lastName}`) : 'U';
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -58,6 +90,21 @@ function NavBar({ currentPage, setCurrentPage }) {
                     <Typography variant="h6" noWrap component="div">
                         {menuItems[currentPage]}
                     </Typography>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <IconButton
+                        color="inherit"
+                        onClick={handleMenuOpen}
+                    >
+                        <Avatar>{userInitials}</Avatar>
+                    </IconButton>
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    </Menu>
                 </Toolbar>
             </CustomAppBar>
             <Drawer
@@ -109,4 +156,4 @@ function NavBar({ currentPage, setCurrentPage }) {
     );
 }
 
-export default NavBar
+export default NavBar;
