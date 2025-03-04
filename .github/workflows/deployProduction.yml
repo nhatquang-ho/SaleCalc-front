@@ -39,6 +39,7 @@ jobs:
         script: |
           rm -rf /var/www/salecalc/*
           cp -r build/* /var/www/salecalc/
+          chmod -R 755 /var/www/salecalc/
           # If needed, restart your web server
           # sudo systemctl restart nginx
 
