@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/SaleCalc/static/js/main.f89f6a75.js",
-    "index.html": "/SaleCalc/index.html",
-    "main.f89f6a75.js.map": "/SaleCalc/static/js/main.f89f6a75.js.map"
+    "main.js": "/salecalc/static/js/main.e0609574.js",
+    "index.html": "/salecalc/index.html",
+    "main.e0609574.js.map": "/salecalc/static/js/main.e0609574.js.map"
   },
   "entrypoints": [
-    "static/js/main.f89f6a75.js"
+    "static/js/main.e0609574.js"
   ]
 }
