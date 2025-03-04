@@ -1,5 +1,5 @@
 {
-  "homepage": "https://nhatquang-ho.github.io/SaleCalc/",
+  "homepage": "https://nhatquang-ho.github.io/salecalc/",
   "name": "salecalc",
   "version": "0.0.1",
   "private": true,
@@ -11,9 +11,12 @@
     "@mui/icons-material": "^6.3.1",
     "@mui/material": "^6.3.1",
     "@mui/styled-engine-sc": "^6.3.1",
+    "@react-keycloak/web": "^3.4.0",
     "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
+    "keycloak-js": "^26.2.0",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -27,7 +30,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:dev": "env-cmd -f .env.development react-scripts start",
+    "build:dev": "env-cmd -f .env.development react-scripts build",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
+    "build:prod": "env-cmd -f .env.production react-scripts build"
   },
   "browserslist": {
     "production": [
@@ -43,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@playwright/test": "^1.49.1"
+    "@playwright/test": "^1.49.1",
+    "env-cmd": "^10.1.0"
   }
 }

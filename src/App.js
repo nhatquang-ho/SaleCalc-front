@@ -1,9 +1,10 @@
-import MyButton from './components/Button/MyButton';
+import React from 'react';
+import MainPage from "./components/MainPage/MainPage";
 
 function App() {
   return (
-    <MyButton />
-  )
+    <MainPage />
+  );
 }
 
 export default App;

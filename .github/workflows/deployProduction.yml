@@ -1,0 +1,53 @@
+name: Deploy React App
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the project
+      run: npm run build:prod
+
+    - name: Deploy via SCP
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.PROD_SERVER_HOST }}
+        port: ${{ secrets.PROD_SERVER_PORT }}
+        username: ${{ secrets.PROD_SERVER_USER }}
+        password: ${{ secrets.PROD_SERVER_PASSWORD }}
+        source: "build/*"
+        target: "/home/tipoutoupi/DEPLOY/salecal-front/"
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.PROD_SERVER_HOST }}
+        port: ${{ secrets.PROD_SERVER_PORT }}
+        username: ${{ secrets.PROD_SERVER_USER }}
+        password: ${{ secrets.PROD_SERVER_PASSWORD }}
+        script: |
+          rm -rf /var/www/salecalc/*
+          cp -r /home/tipoutoupi/DEPLOY/salecal-front/build/* /var/www/salecalc/
+          chmod -R 755 /var/www/salecalc/
+          rm -rf /home/tipoutoupi/DEPLOY/salecal-front/*
