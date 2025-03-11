@@ -16,7 +16,7 @@ function MainPage() {
         if (keycloak !== undefined) {
             console.log('Keycloak:', keycloak.keycloak.token);
 
-            fetchData('http://localhost:9090/api/commands/', {
+            fetchData(process.env.REACT_APP_API_URL + '/commands/', {
                 'Authorization': `Bearer ${keycloak.keycloak.token}`
             })
             .then(data => {
